@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Baby Shower Invitation</title>
+
+<style>
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #fff0f5;
+color: #333;
+}
+
+/* Generic slide style */
+.slide {
+display: none;
+height: 100vh;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+text-align: center;
+padding: 20px;
+}
+
+/* Active slide */
+.active {
+display: flex;
+}
+
+/* Pink & white theme */
+h1, h2 {
+color: #e91e63;
+}
+
+/* Envelope style */
+.envelope {
+width: 200px;
+height: 130px;
+background: white;
+border: 3px solid #e91e63;
+position: relative;
+cursor: pointer;
+}
+
+.envelope:before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 0;
+height: 0;
+border-left: 100px solid transparent;
+border-right: 100px solid transparent;
+border-top: 70px solid #e91e63;
+}
+
+/* Buttons */
+button {
+background: #e91e63;
+color: white;
+border: none;
+padding: 10px 20px;
+margin-top: 15px;
+cursor: pointer;
+border-radius: 20px;
+}
+
+button:hover {
+background: #c2185b;
+}
+
+/* RSVP form */
+input, select, textarea {
+width: 80%;
+padding: 10px;
+margin: 10px 0;
+border-radius: 10px;
+border: 1px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SLIDE 1: ENVELOPE -->
+<div class="slide active" id="slide1">
+<h1>You're Invited 💕</h1>
+<p>Tap the envelope to open</p>
+
+<div class="envelope" onclick="nextSlide(2)"></div>
+</div>
+
+<!-- SLIDE 2: EVENT DETAILS -->
+<div class="slide" id="slide2">
+<h1>Baby Shower 💖</h1>
+<p><strong>Venue:</strong> Johannesburg</p>
+<p><strong>Date:</strong> (Your Date Here)</p>
+<p><strong>Time:</strong> (Your Time Here)</p>
+
+<button onclick="nextSlide(3)">RSVP</button>
+</div>
+
+<!-- SLIDE 3: RSVP FORM -->
+<div class="slide" id="slide3">
+<h2>RSVP 💌</h2>
+
+<input type="text" id="name" placeholder="Your Name" />
+
+<select id="attendance">
+<option value="">Will you join us?</option>
+<option value="Yes">Yes</option>
+<option value="Yes I can make it">Yes, I can make it</option>
+<option value="No">No, I can't make it</option>
+</select>
+
+<textarea id="message" placeholder="Message to the parents 💕"></textarea>
+
+<button onclick="submitRSVP()">Send RSVP</button>
+</div>
+
+<script>
+function nextSlide(n) {
+document.querySelectorAll('.slide').forEach(slide => {
+slide.classList.remove('active');
+});
+document.getElementById('slide' + n).classList.add('active');
+}
+
+function submitRSVP() {
+let name = document.getElementById("name").value;
+let attendance = document.getElementById("attendance").value;
+let message = document.getElementById("message").value;
+
+if (!name || !attendance) {
+alert("Please complete your RSVP 💕");
+return;
+}
+
+alert(
+"Thank you " + name + " 💖\n" +
+"Response: " + attendance + "\n" +
+"Message: " + message
+);
+
+// reset form
+document.getElementById("name").value = "";
+document.getElementById("attendance").value = "";
+document.getElementById("message").value = "";
+}
+</script>
+
+</body>
+</html>
